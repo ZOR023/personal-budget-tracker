@@ -3,7 +3,7 @@ from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 import os
 
-os.makedirs("db",exist_ok="False")
+os.makedirs("db",exist_ok=True)
 
 DATABASE_URL =  ""
 
