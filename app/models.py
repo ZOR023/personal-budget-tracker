@@ -7,6 +7,6 @@ class Transaction(Base):
 
   id = Column(Integer,primary_key=True)
   description = Column(String,nullable=False)
-  amount = Column(float,nullable=False)
+  amount = Column(Float,nullable=False)
   category = Column(String,nullable=False)
   date = Column(Date,nullable=False)

@@ -1,14 +1,14 @@
 from flask import Blueprint, request, jsonify
 from .models import Transaction
-from .database import sessionLocal
+from .database import SessionLocal
 from datetime import datetime
 
-bp = Blueprint("main", __name__)
+bp = Blueprint('routes', __name__)
 
 
 @bp.route("/transactions", methods=["GET"])
 def get_transactions():
-    db = sessionLocal
+    db = SessionLocal()
     transactions = db.query(Transaction).all()
     db.close()
     return jsonify([
@@ -25,7 +25,7 @@ def get_transactions():
 def add_transactions():
     
     data = request.get_json()
-    db = sessionLocal
+    db = SessionLocal()
     new_t = Transaction(
         description = data["description"],
         amount = data["amount"],

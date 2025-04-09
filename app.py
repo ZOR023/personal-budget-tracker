@@ -1,6 +1,16 @@
-from app import create_app
+from flask import Flask
+from app.routes import bp
+from app.models import Transaction,Base
+from app.database import engine
 
-app = create_app()
 
-if "__name__" == "__main__":
-  app.run(debug=True)
+
+app = Flask(__name__)
+app.register_blueprint(bp)
+Base.metadata.create_all(bind=engine)
+@app.route("/")
+def home():
+    return "Hello, world! its"
+
+if __name__ == "__main__":
+    app.run(debug=True)
