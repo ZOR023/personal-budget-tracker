@@ -9,9 +9,9 @@ app.register_blueprint(bp)
 Base.metadata.create_all(bind=engine)
 
 
-@app.route("/")
-def home():
-    return "Hello, world!"
+# @app.route("/")
+# def home():
+#     return "Hello, world!"
 
 
 if __name__ == "__main__":

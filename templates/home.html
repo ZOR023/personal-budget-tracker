@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Budget Tracker</title>
+</head>
+
+
+<body>
+
+  <h1>Welcome to Budget Tracker</h1>
+  <form action="/add" method="post">
+    <input type="text" name="description" placeholder="Description" required>
+    <input type="number" name="amount" placeholder="Amount" required>
+    <input type="text" name="category" placeholder="Category" required>
+    <input type="date" name="date" required>
+    <button type="submit">Add Transaction</button>
+  </form>
+
+  <h2>Transactions</h2>
+  <ul>
+    {% for t in transactions %}
+    <li>{{ t.date }} - {{ t.description }} - {{ t.amount }} ({{ t.category }})</li>
+    {% endfor %}
+  </ul>
+
+</body>
+
+</html>
