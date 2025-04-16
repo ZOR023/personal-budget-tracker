@@ -24,6 +24,49 @@
     {% endfor %}
   </ul>
 
+  <button type="toggle" onclick="fetchSummary()" style="padding: 8px 16px; background-color: #007bff; color: white; border: none; border-radius: 4px;">
+    📊 Show Summary
+</button>
+
+<div id="summary-box" style="margin-top: 16px; display: none; font-weight: bold;"></div>
+
+
+  <a href="/export" class="btn">
+    <button type="button">Export</button>
+  </a>
+
+  <script>
+    let summaryVisible = false;
+    
+    function fetchSummary() {
+        const summaryBox = document.getElementById("summary-box");
+    
+        if (summaryVisible) {
+            summaryBox.style.display = "none";
+            summaryVisible = false;
+            return;
+        }
+    
+        fetch("/summary")
+            .then(response => response.json())
+            .then(data => {
+                summaryBox.innerHTML = `
+                    Total Income: ₹${data.total_income} <br>
+                    Total Expenses: ₹${Math.abs(data.total_expense)} <br>
+                    Balance: ₹${data.balance}
+                `;
+                summaryBox.style.display = "block";
+                summaryVisible = true;
+            })
+            .catch(error => {
+                console.error("Error fetching summary:", error);
+            });
+    }
+    </script>
+    
+  
+
+
 </body>
 
 </html>
